@@ -1,67 +1,63 @@
- abstract class Room {
-        protected int numberOfBeds;
-        protected int sizeSqFt;
-        protected double price;
-        protected String roomTypeName;
+public class BookMyStayApp {
 
-        public Room(String name, int beds, int size, double price) {
-            this.roomTypeName = name;
-            this.numberOfBeds = beds;
-            this.sizeSqFt = size;
+    static abstract class Room {
+        int beds;
+        double price;
+        int size;
+
+        Room(int beds, double price, int size) {
+            this.beds = beds;
             this.price = price;
+            this.size = size;
         }
 
-        public void displayDetails() {
-            System.out.println("--- " + roomTypeName + " ---");
-            System.out.println("Beds: " + numberOfBeds);
-            System.out.println("Size: " + sizeSqFt + " sq. ft.");
-            System.out.printf("Price: $%.2f%n", price);
-        }
-
-    public class SingleRoom extends Room {
-        public SingleRoom() {
-            super("Single Room", 1, 250, 1500.0);
+        void displayDetails() {
+            System.out.println("Beds: " + beds);
+            System.out.println("Price: Rs " + price);
+            System.out.println("Size: " + size + " ft");
         }
     }
 
-    public class DoubleRoom extends Room {
-        public DoubleRoom() {
-            super("Double Room", 2, 400, 2200.0);
+    static class SingleRoom extends Room {
+        SingleRoom() {
+            super(1, 2000,300);
         }
     }
 
-    public class SuiteRoom extends Room {
-        public SuiteRoom() {
-            super("Executive Suite", 2, 800, 5000.0);
+    static class DoubleRoom extends Room {
+        DoubleRoom() {
+            super(2, 3000, 500);
         }
     }
 
-    public class BookMyStay {
-
-        private static int singleAvailability = 10;
-        private static int doubleAvailability = 5;
-        private static int suiteAvailability = 2;
-
-        public void main(String[] args) {
-            System.out.println("HOTEL INVENTORY SYSTEM - INITIALIZED\n");
-
-            Room mySingle = new SingleRoom();
-            Room myDouble = new DoubleRoom();
-            Room mySuite = new SuiteRoom();
-
-            mySingle.displayDetails();
-            System.out.println("Current Availability: " + singleAvailability + " left");
-            System.out.println("-----------------------------------");
-
-            myDouble.displayDetails();
-            System.out.println("Current Availability: " + doubleAvailability + " left");
-            System.out.println("-----------------------------------");
-
-            mySuite.displayDetails();
-            System.out.println("Current Availability: " + suiteAvailability + " left");
-            System.out.println("-----------------------------------");
-
-            System.out.println("\nApplication Terminated.");
+    static class SuiteRoom extends Room {
+        SuiteRoom() {
+            super(3, 5000, 900);
         }
+    }
+
+    public static void main(String[] args) {
+
+        Room single = new SingleRoom();
+        Room doubleroom = new DoubleRoom();
+        Room suite = new SuiteRoom();
+
+        int singleAvailable = 5;
+        int doubleAvailable = 3;
+        int suiteAvailable = 2;
+
+        System.out.println("Welcome to BookMyStay\n");
+
+        System.out.println("Single Room:");
+        single.displayDetails();
+        System.out.println("Available: " + singleAvailable);
+
+        System.out.println("\nDouble Room:");
+        doubleroom.displayDetails();
+        System.out.println("Available: " + doubleAvailable);
+
+        System.out.println("\nSuite Room:");
+        suite.displayDetails();
+        System.out.println("Available: " + suiteAvailable);
     }
 }
