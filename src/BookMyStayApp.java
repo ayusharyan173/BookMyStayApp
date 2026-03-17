@@ -1,6 +1,6 @@
 import java.util.*;
 
-class AddOnService {
+public class AddOnService {
     String serviceName;
     double cost;
 
@@ -10,7 +10,7 @@ class AddOnService {
     }
 }
 
-class AddOnServiceManager {
+public class AddOnServiceManager {
 
     // ReservationID -> List of services
     private Map<String, List<AddOnService>> reservationServices = new HashMap<>();
